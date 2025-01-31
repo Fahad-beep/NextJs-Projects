@@ -1,16 +1,14 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// http://localhost:3000/api/getBlogs?slug=how-to-learn-flask.json
 import * as fs from "fs/promises";
 
 export default async function handler(req, res) {
-  console.log("------------------------------------------");
+  console.log("----------------get blogs--------------------------");
 
-  const directories = await fs.readdir("blogdata");
-  const content = await fs.readFile(`blogdata/${req.query.slug}`, "utf-8");
-  if (!directories) {
-    res.status(500).json({ message: "Directory not found" });
-  } else if (!content && directories) {
-    res.status(200).json({ directories: directories });
+  const content = await fs.readFile(`blogdata/${req.query.slug}.json`, "utf-8");
+  if (!content) {
+    res.status(500).json({ message: "blog content not found" });
   } else {
-    res.status(200).json({ directories: directories, content: content });
+    console.log("content: ", content);
+    res.status(200).json(JSON.parse(content));
   }
 }
