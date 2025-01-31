@@ -1,0 +1,37 @@
+.main {
+  margin-top: 70px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
+  padding-top: 32px;
+  gap: 12px;
+  grid-row-start: 2;
+}
+
+.main hr {
+  width: 100%;
+  margin: 30px;
+  border: none;
+  height: 1px;
+  background-color: white;
+}
+
+.container {
+  padding: 0 2rem;
+}
+
+.blogpost p {
+  margin-bottom: 20px;
+  margin-top: 6px;
+
+  justify-content: center;
+}
+
+.blogpost h3 {
+  /* margin-top: 10px; */
+  justify-content: center;
+}
