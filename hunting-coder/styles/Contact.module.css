@@ -4,20 +4,58 @@
 }
 
 .container h1 {
-  margin-bottom: 4%;
+  margin-bottom: 6%;
+  margin-top: 8%;
+  justify-self: center;
 }
 
 .mb3 {
   margin-bottom: 21px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formControl {
-  margin: 0px 14px;
+  padding: 7px;
+  border-radius: 5px;
+  border: solid black;
 }
 
 .btnSubmit {
   color: black;
   background-color: white;
-  padding: 10px 50px 10px 50px;
+  padding: 7px 17px;
   border-radius: 7px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid black;
+  transition: color 0.4s ease-in-out;
+}
+
+.btnSubmit::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: black;
+  transition: height 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.btnSubmit:hover {
+  color: white;
+  background-color: grey;
+}
+
+.btnSubmit:hover::after {
+  height: 100%;
+}
+
+.formLabel {
+  margin: 0px 0px 6px 0px;
+  font-weight: bold;
+  font-size: 15px;
 }

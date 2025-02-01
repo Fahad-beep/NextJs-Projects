@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,18 +17,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function Home(props) {
+  const [homeData, sethomeData] = useState(props.homeData);
+
+  console.log(`home Data: ${homeData}`);
   return (
     <>
-      <style jsx>{`
-        h2 {
-          font-size: 38px;
-        }
-        h3 {
-          font-size: 28px;
-          margin-bottom: 6px;
-        }
-      `}</style>
       <Head>
         <title>Hunting Coders</title>
         <meta
@@ -41,24 +36,34 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <span className="myspan dummy">
-            <h1 className={styles.title}>Hunting Coders</h1>
-          </span>
+          <h1 className={styles.title}>Hunting Coders</h1>
           <div className={styles.imageWrap}>
             <Image
               src="/homeing.jpg"
-              width={800}
-              height={400}
+              width={200}
+              height={200}
               className={styles.myImg}
+              alt="My Home Working Image"
             />
           </div>
 
           <p className={styles.description}>
-            A blog for hutning coders by a hunting coder
+            {homeData ??
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel modi laboriosam minus optio quos cum, veniam sunt aspernatur a sit esse quibusdam eius iure repudiandae nulla qui, doloribus repellendus ad corrupti. Qui, neque reprehenderit!"}
           </p>
         </main>
         <footer className={styles.footer}></footer>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  let req = await fetch(`http://localhost:3000/api/gethome`);
+  let homeData = await req.json();
+  return {
+    props: {
+      homeData,
+    },
+  };
 }

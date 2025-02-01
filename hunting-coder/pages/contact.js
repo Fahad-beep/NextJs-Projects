@@ -44,7 +44,9 @@ const contact = () => {
       <h1>Contact us</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.mb3}>
-          <label htmlFor="name">Enter Your Name</label>
+          <label className={styles.formLabel} htmlFor="name">
+            Enter Your Name
+          </label>
           <input
             type="text"
             className={styles.formControl}
@@ -53,10 +55,13 @@ const contact = () => {
             placeholder="John Alia"
             onChange={handleChange}
             value={name}
+            required
           />
         </div>
         <div className={styles.mb3}>
-          <label htmlFor="age">Enter your age</label>
+          <label className={styles.formLabel} htmlFor="age">
+            Enter your age
+          </label>
           <input
             type="number"
             className={styles.formControl}
@@ -65,10 +70,13 @@ const contact = () => {
             placeholder="23"
             onChange={handleChange}
             value={age}
+            required
           />
         </div>
         <div className={styles.mb3}>
-          <label htmlFor="email">Email address</label>
+          <label className={styles.formLabel} htmlFor="email">
+            Email address
+          </label>
           <input
             type="email"
             className={styles.formControl}
@@ -77,10 +85,15 @@ const contact = () => {
             placeholder="name@example.com"
             value={email}
             onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.mb3}>
-          <label htmlFor="desc" placeholder="Write your concerns here">
+          <label
+            className={styles.formLabel}
+            htmlFor="desc"
+            placeholder="Write your concerns here"
+          >
             Elaborate your concerns
           </label>
           <textarea
@@ -91,6 +104,7 @@ const contact = () => {
             onChange={handleChange}
             value={desc}
             name="desc"
+            required
           ></textarea>
         </div>
         <button type="submit" className={styles.btnSubmit}>

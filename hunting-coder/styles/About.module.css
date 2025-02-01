@@ -1,0 +1,17 @@
+.container {
+  margin: 45px auto;
+  max-width: 55%;
+}
+
+.center {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.container h2 {
+  margin: 20px 0px 10px 0px;
+}
+
+.container ul {
+  margin: 5px 0px 30px 20px;
+}

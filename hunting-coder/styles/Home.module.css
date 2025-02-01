@@ -173,6 +173,7 @@ a.secondary {
 
 .title {
   justify-content: center;
+  font-size: 2rem;
 }
 .blogpost h2 {
   margin-bottom: 20px;
@@ -205,15 +206,16 @@ a.secondary {
   margin: 24px;
 }
 .myImg {
-  border-radius: 10px;
+  /* width: 200px; */
+  border-radius: 200px;
 }
 
 .imageWrap {
-  padding: 10px;
+  margin: 20px 0px 0px 0px;
 }
 
 .description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+  /* line-height: 1.5; */
+  font-size: 1srem;
   margin: 30px;
 }
