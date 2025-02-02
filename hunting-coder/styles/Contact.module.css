@@ -23,6 +23,7 @@
 
 .btnSubmit {
   color: black;
+  font-weight: bold;
   background-color: white;
   padding: 7px 17px;
   border-radius: 7px;

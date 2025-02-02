@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import Script from "next/script";
-import NavBar from "@/components/navBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +16,6 @@ const geistMono = Geist_Mono({
 
 export default function Home(props) {
   const [homeData, sethomeData] = useState(props.homeData);
-
-  console.log(`home Data: ${homeData}`);
   return (
     <>
       <Head>
@@ -36,7 +31,6 @@ export default function Home(props) {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <h1 className={styles.title}>Hunting Coders</h1>
           <div className={styles.imageWrap}>
             <Image
               src="/homeing.jpg"
@@ -46,6 +40,7 @@ export default function Home(props) {
               alt="My Home Working Image"
             />
           </div>
+          <h1 className={styles.title}>&lt;Hunting Coders/&gt;</h1>
 
           <p className={styles.description}>
             {homeData ??

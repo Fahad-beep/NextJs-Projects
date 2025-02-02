@@ -1,9 +1,7 @@
 import * as fs from "fs/promises";
-
 export default async function handler(req, res) {
   if (req.method === "GET") {
     let file = await fs.readFile(`homedata/homedata.json`, "utf-8");
-    // console.log("file: ", JSON.parse(file).content);
     if (file.length <= 0) {
       return res
         .status(404)

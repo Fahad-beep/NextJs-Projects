@@ -3,8 +3,6 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       let data = req.body;
-      console.log(`req.body: ${JSON.stringify(data)}`);
-      console.log(`req.body: ${JSON.parse(JSON.stringify(data)).name}`);
       let filesCount = await fs.readdir("contactdata");
       await fs.writeFile(
         `contactdata/${filesCount.length + 1}.json`,

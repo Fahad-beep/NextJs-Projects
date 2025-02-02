@@ -6,7 +6,6 @@ const contact = () => {
   const [email, setemail] = useState("");
   const [desc, setdesc] = useState("");
   const handleSubmit = (e) => {
-    console.log(name, age, email, desc);
     e.preventDefault();
     const data = { name, age, email, desc };
     fetch("http://localhost:3000/api/postcontact", {
@@ -18,15 +17,12 @@ const contact = () => {
     })
       .then((val) => val.text())
       .then((dat) => {
-        console.log("Success: ", dat);
         setname("");
         setdesc("");
         setemail("");
         setage("");
       })
-      .catch((err) => {
-        console.log("err: ", err);
-      });
+      .catch((err) => {});
   };
   const handleChange = (e) => {
     if (e.target.name == "name") {
