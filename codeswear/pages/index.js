@@ -19,9 +19,12 @@ export default function Home() {
     <div>
       <Head>Codeswear.com - Wear The Code</Head>
       <meta name="description" content="Codeswear.com - Wear The Code" />
-      <NavBar />
       <div>
-        <img src="/background.jpg" alt="" className="w-[5710px] h-[600px]" />
+        <img
+          src="/background.jpg"
+          alt="Loading Pahaarh"
+          className="w-[5710px] h-[600px]"
+        />
       </div>
       <section className="text-gray-400 body-font bg-gray-900">
         <div className="container px-5 py-24 mx-auto">
@@ -188,7 +191,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <Footer />
     </div>
   );
 }
