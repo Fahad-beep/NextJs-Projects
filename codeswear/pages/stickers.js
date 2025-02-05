@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useRouter } from "next/router";
 const Stickers = () => {
+  const router = useRouter();
   return (
     <div>
       <section className="text-black-500 bg-white body-font">

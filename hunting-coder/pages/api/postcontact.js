@@ -23,3 +23,4 @@ export default async function handler(req, res) {
     });
   }
 }
+// books -> app.use(/app/v1/books/, router)
