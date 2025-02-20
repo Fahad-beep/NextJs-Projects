@@ -1,12 +1,14 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 const Hoodies = () => {
+  const router = useRouter();
   return (
     <div>
       {" "}
       <section className="text-black-500 bg-white body-font">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4 justify-center">
             <div
               className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5 cursor-pointer"
               onClick={() => {
