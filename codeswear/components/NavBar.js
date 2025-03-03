@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiShoppingCart } from "react-icons/ci";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import { MdAccountCircle } from "react-icons/md";
 import {
   AiFillCloseCircle,
   AiFillPlusCircle,
@@ -51,10 +52,16 @@ const NavBar = ({
           </Link>
         </ul>
       </div>
-      <CiShoppingCart
-        className="text-xl absolute right-2 top-4 md:text-2xl cursor-pointer"
-        onClick={toggleCart}
-      />
+      <div className="text-xl absolute right-0 top-4 md:text-2xl cursor-pointer flex mr-2">
+        <Link href={"/login"}>
+          <MdAccountCircle className="text-xl md:text-2xl cursor-pointer" />
+        </Link>{" "}
+        <CiShoppingCart
+          className="text-xl md:text-2xl cursor-pointer"
+          onClick={toggleCart}
+        />
+      </div>
+
       <div
         ref={sidebarRef}
         className={`sidebar w-[300px] h-[100vh] absolute right-0 top-0 bg-pink-100 py-4 px-7 z-10 ${
