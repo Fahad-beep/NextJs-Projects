@@ -5,11 +5,18 @@ import Header from "@/components/header";
 import { Image, MessageSquare } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constants";
+import { formSchema, amountValues } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { GenerateContentResponse } from "@google/genai";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -18,28 +25,33 @@ import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/userAvatar";
 import BotAvatar from "@/components/botAvatar";
+import { Select, SelectGroup } from "@/components/ui/select";
+import {
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@radix-ui/react-select";
+import Link from "next/link";
 
 const ImageGeneration = () => {
+  const [images, setImages] = useState<String[]>([]);
   const router = useRouter();
-  const [messages, setMessages] = useState<GenerateContentResponse[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+      resolution: "5112x512",
+      amount: "1",
     },
   });
   const isLoading = form.formState.isSubmitting;
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
-    console.log("in onSubmit method");
     try {
-      const userMessage = value.prompt;
-      const newMessages = [...messages, userMessage];
-      const response = await axios.post("/api/image", {
-        messages: newMessages,
-      });
-      console.log("conv page: ", response.data);
-      setMessages((current) => [response.data, userMessage, ...current]);
-
+      setImages([]);
+      const response = await axios.post("/api/image", value);
+      const urls = response.data.map((image: { url: string }) => image.url);
       form.reset();
     } catch (e: any) {
       console.log(e);
@@ -79,6 +91,35 @@ const ImageGeneration = () => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => {
+                  return (
+                    <FormItem className="col-span-12 lg:col-span-2">
+                      <Select
+                        defaultValue={field.value}
+                        disabled={isLoading}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue defaultValue={field.value} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {amountValues.map((option) => (
+                            <SelectItem value={option.value} key={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  );
+                }}
+              />
               <Button
                 className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
@@ -90,28 +131,10 @@ const ImageGeneration = () => {
         </div>
         <div className="space-y-4 mt-4">
           {isLoading && <Loading />}
-          {messages.length === 0 && !isLoading && (
-            <Empty label={"No Conversation Started"} />
+          {images.length === 0 && !isLoading && (
+            <Empty label={"No Images Generated"} />
           )}
-          <div className="flex flex-col-reverse gap-y-4">
-            {messages.map((content, i) => {
-              console.log(i, i % 2 == 0);
-              return (
-                <div
-                  key={`${content}`.length}
-                  style={{ whiteSpace: "pre-wrap" }}
-                  className={cn(
-                    "p-8 w-full flex items-start rounded-xl gap-x-2 ",
-                    i % 2 == 0 ? "bg-muted font-semibold" : " border shadow-sm"
-                  )}
-                >
-                  {i % 2 != 0 ? <UserAvatar /> : <BotAvatar />}
-                  {`${content}`}
-                </div>
-              );
-            })}
-            <div className="mb-16"> </div>
-          </div>
+          <div>Images will be rendered here</div>
         </div>
       </div>
     </div>
