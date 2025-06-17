@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "ClashDisplay-Extralight";
+  src: url("/fonts/ClashDisplay-Extralight.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Light";
+  src: url("/fonts/ClashDisplay-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Regular";
+  src: url("/fonts/ClashDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Medium";
+  src: url("/fonts/ClashDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Semibold";
+  src: url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Bold";
+  src: url("/fonts/ClashDisplay-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0
+*/
+@font-face {
+  font-family: "ClashDisplay-Variable";
+  src: url("/fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    font-family: "ClashDisplay-Variable", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .container {
+    /* @apply p-6 rounded-lg shadow-lg bg-white mx-auto; */
+  }
+
+  .btn-primary {
+    @apply text-white bg-indigo-600 px-14 py-1.5 rounded-md shadow-sm hover:bg-indigo-700 active:ring-2 ring-offset-1 ring-indigo-700 disabled:bg-slate-300 disabled:text-slate-100 disabled:cursor-not-allowed;
+  }
+
+  .nav-link {
+    @apply text-white  hover:text-slate-700 px-3 py-2 text-sm font-medium;
+  }
+  .nav-link-active {
+    /* @apply text-slate-700; */
+  }
+}
+
+input,
+textarea {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+.input {
+  /* border: 1px #c3c3c3 solid; */
+  /* padding: 8px 12px;
+  line-height: 1;
+  border-radius: 5px; */
+}
+.header-bluer {
+  backdrop-filter: blur(8px);
+  /* -webkit-filter: blur(20px); */
+}
+.anim {
+  transition: all 0.3s linear 0s;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* opacity: 0; Initial state - handled by GSAP */
+  /* visibility: hidden; Initial state - handled by GSAP */
+}
+
+/* Prevent scrolling during preload */
+body.preloader-active {
+  overflow: hidden;
+  height: 100vh;
+}
+.preloader .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) rotate(45deg) translate3d(0, 0, 0);
+  animation: loader 1.2s infinite ease-in-out;
+}
+.preloader .loader span {
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  animation: loaderBlock 1.2s infinite ease-in-out both;
+}
+.preloader .loader span:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+.preloader .loader span:nth-child(2) {
+  top: 0;
+  right: 0;
+  animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+}
+.preloader .loader span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+}
+.preloader .loader span:nth-child(4) {
+  bottom: 0;
+  right: 0;
+}
+.preloader svg {
+  width: 200px;
+}
+@layer utilities {
+  .margins {
+    @apply py-8 px-4 sm:px-6 lg:px-8;
+  }
+  .wrapper {
+    @apply w-full max-w-[1200px];
+  }
+  .circle {
+    background: rgba(173, 255, 0, 0.05);
+    /* backdrop-filter: blur(20px); */
+    -webkit-filter: blur(20px);
+  }
+}
